@@ -13,9 +13,28 @@ class Stat
 
     def initialize
         @stat = load_file('./zdr.csv')
-        # @stat.each do |e|
-            # puts e
-        # end
+        print %(
+This program provides information on the number
+of sick humans in the 2018
+1 maximum
+2 minimum
+3 average value
+4 corrected sample variance
+Enter: )
+        choise = gets.chomp.to_i
+
+        case choise
+        when 1
+            puts "Minimum: #{get_min}"
+        when 2
+            puts "Maximum: #{get_max}"
+        when 3
+            puts "Average: #{get_average}"
+        when 4
+            puts "Sample variance: #{get_sample_variance}"
+        else
+            puts "wrong option"
+        end
     end
 
     def get_min
@@ -25,7 +44,7 @@ class Stat
                 min = e
             end
         end
-        puts min
+        min
     end
 
     def get_max
@@ -35,7 +54,7 @@ class Stat
                 max = e
             end
         end
-        puts max
+        max
     end
 
     def get_average
@@ -43,9 +62,20 @@ class Stat
         @stat.each do |e|
             sum += e
         end
-        puts sum / @stat.length
+        sum / @stat.length
+    end
+
+    def get_sample_variance
+        variance = 0
+        avg = get_average
+        @stat.each do |e|
+            tmp = e - avg
+            tmp **= 2
+            variance += tmp
+        end
+        variance *= 1.0 / (@stat.length - 1.0)
     end
 
 end
 
-Stat.new.get_average
+Stat.new
