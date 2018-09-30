@@ -4,16 +4,25 @@ class CalcTemp
 
     def scan_temp
         puts "which temp?"
-        @temp = gets
+        @temp = gets.chomp
         puts "which scale? (c, k, f)"
-        @scale = gets
+        @scale = gets.chomp
         puts "which scale to convert?"
-        @scale_to_convert = gets
+        @scale_to_convert = gets.chomp
     end
 
     def convert
         return unless cale.eql? scale_to_convert
 
+        case @scale_to_convert
+        when /[c]/
+            case @scale
+            when /[k]/
+                temp -= 273.15
+            when /[f]/
+                temp = 5 * (self.temp - 32) / 9
+            end
+        end
 
     end
 
