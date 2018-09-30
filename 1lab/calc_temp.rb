@@ -4,7 +4,7 @@ class CalcTemp
 
     def scan_temp
         puts "which temp?"
-        @temp = gets.chomp
+        @temp = gets.chomp.to_f
         puts "which scale? (c, k, f)"
         @scale = gets.chomp
         puts "which scale to convert?"
@@ -27,7 +27,7 @@ class CalcTemp
     end
 
     def print_temp
-        puts "temp is #{@temp}"
+        puts "temp is #{temp}"
     end
 
 end
